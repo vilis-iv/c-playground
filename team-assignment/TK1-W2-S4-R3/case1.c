@@ -26,9 +26,9 @@ int main() {
     time[2] = input % 3600 % 60;          //Fetch second
 
     for(int i = 0; i < 3; i++) {
-        printf(isSingleDigit(time[i]) //Check wether the value is single digit or not
-            ? i != 2 ? "0%d:" : "0%d"               //If the value is single digit add '0' as prefix
-            : i != 2 ? "%d:" : "%d"                 //else print the exact value
+        printf(isSingleDigit(time[i])     //Check wether the value is single digit or not
+            ? i != 2 ? "0%d:" : "0%d"     //If the value is single digit add '0' as prefix
+            : i != 2 ? "%d:" : "%d"       //else print the exact value
             ,time[i] 
         );
     }
