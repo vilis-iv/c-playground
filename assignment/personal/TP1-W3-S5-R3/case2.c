@@ -98,10 +98,11 @@ int main() {
         if(totalGroceriesInMonth == 4) {
             char extraDiscountTag[] = " + 20%";
             strcat(discountTag, extraDiscountTag);
+            price = price - (price * 20 / 100);
+            
             for(int i = 0; i < index + 1; i++) {
                 if(transactions[index].month == transactions[i].month && !transactions[i].deleted) {
                     transactions[i].deleted = true;
-                    price = price - (price * 20 / 100);
                 }
             }
         }
@@ -111,11 +112,11 @@ int main() {
         nextEntry(isEntry);
     }
 
-    for(int i = 0; i < index; i++) {
-        printf("\n%d", transactions[i].month);
-        printf("\n%.2lf",transactions[i].fPrice);
-        printf("\n%s", transactions[i].deleted ? "true" : "false");
-    }
+    // for(int i = 0; i < index; i++) {
+    //     printf("\n%d", transactions[i].month);
+    //     printf("\n%.2lf",transactions[i].fPrice);
+    //     printf("\n%s", transactions[i].deleted ? "true" : "false");
+    // }
 
     
     return 0;
