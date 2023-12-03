@@ -10,12 +10,9 @@ float calc(char operator, float numX, float numY) {
 }
 
 int main() {
-    float num1;
-    float num2;
-    float num3;
-    float result;
-    char operator1;
-    char operator2;
+    float num1, num2, num3, result;
+    char operator1, operator2;
+    
     printf("Equation = ");
     scanf("%f %c %f %c %f", &num1, &operator1, &num2, &operator2, &num3);
     
