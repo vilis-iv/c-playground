@@ -12,8 +12,8 @@ float calc(char operator, float numX, float numY) {
 int main() {
     float num1, num2, num3, result;
     char operator1, operator2;
-    
-    printf("Equation = ");
+
+    printf("\nEquation = ");
     scanf("%f %c %f %c %f", &num1, &operator1, &num2, &operator2, &num3);
     
     result = (operator2 == '*' || operator2 == '/') 
