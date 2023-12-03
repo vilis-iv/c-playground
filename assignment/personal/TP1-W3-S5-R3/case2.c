@@ -13,6 +13,17 @@ struct trx {
 };
 
 /****************************
+* Function Description: creating terminal line prompt to get user's confirmation wether to continue to enter next transaction or stop the program
+*
+* @input: String isEntry
+*****************************/
+void nextEntry(char *isEntry) {
+        printf("\ncontinue (Y/n): ");
+        fgets(isEntry, 10, stdin);
+        isEntry[strcspn(isEntry, "\n")] = '\0';
+}
+
+/****************************
 * Function Description: Print Program title at the top line of terminal
 * 
 * @output: print line of program title
@@ -40,22 +51,9 @@ void footer(int totalGroceries, double basePrice, double price, char discountTag
 
 }
 
-/****************************
-* Function Description: creating terminal line prompt to get user's confirmation wether to continue to enter next transaction or stop the program
-*
-* @input: String isEntry
-*****************************/
-void nextEntry(char *isEntry) {
-        printf("\ncontinue (Y/n): ");
-        fgets(isEntry, 10, stdin);
-        isEntry[strcspn(isEntry, "\n")] = '\0';
-}
 
 int main() {
-    /********************
-    * PROGRAM TITLE
-    *********************/
-    header();
+    header();                                       //Program Title
     
     struct trx *transactions;                       //initializing struct trx as transactions
     transactions = malloc(sizeof(struct trx));      //allocating memory for transactions
@@ -83,35 +81,32 @@ int main() {
         printf("Total Belanja Rp: ");
         scanf ("%lf", &transactions[index].fPrice);
         getchar();                                  //getchar() to clean trailing "\n" after scanf in order to not distrupt fgets inside nextEntry function
+        transactions[index].deleted = false;        //Set deleted status to false for new input
         
+
         price = transactions[index].fPrice;
         basePrice = price;
         if (price < 200000) {
-            // discountTag = "0%";
             strcpy(discountTag, "0%");
             price = price;
         } 
         else if (price >= 200000 && price < 550000) {
-            // discountTag = "10%";
             strcpy(discountTag, "10%");
             price = price - (price * 10 / 100);
         } 
         else if (price >= 550000 && price < 1000000) {
-            // discountTag = "20%";
             strcpy(discountTag, "20%");
             price = price - (price * 20 / 100);
         }
         else {
-            // discountTag = "30%";
             strcpy(discountTag, "30%");
             price = price - (price * 30 / 100);
         }
 
-        transactions[index].deleted = false;
 
         /**************************************
-        * Check for total transaction on given month
-        * totalGroceries will 
+        * Check for total transaction with deleted status set to false on given month
+        * 'totalGroceries' will increase for each iteration from 'struct trx transactions' that match the same month as the input
         ***************************************/
         int totalGroceries = 0;
         for(int i = 0; i < index + 1; i++) {
@@ -120,10 +115,14 @@ int main() {
             }
         }
 
+        /**************************************
+        * if 'totalGroceries' reach 4 or equal to 4 apply additional discount to current transaction, 
+        * and set the status of 4 prevous transactions to deleted, so it will not iterated again in the next transaction
+        ***************************************/
         if(totalGroceries == 4) {
-            char extraDiscountTag[] = " + 20%";
-            strcat(discountTag, extraDiscountTag);
-            price = price - (price * 20 / 100);
+            char extraDiscountTag[] = " + 20%";     //Extra discount tag
+            strcat(discountTag, extraDiscountTag);  //Append discount tag with extra discount tag
+            price = price - (price * 20 / 100);     //Add extra discount to previous discount
             
             for(int i = 0; i < index + 1; i++) {
                 if(transactions[index].month == transactions[i].month && !transactions[i].deleted) {
@@ -133,15 +132,10 @@ int main() {
         }
 
         index++;
-        footer(totalGroceries, basePrice, price, discountTag);
-        nextEntry(isEntry);
-    }
 
-    // for(int i = 0; i < index; i++) {
-    //     printf("\n%d", transactions[i].month);
-    //     printf("\n%.2lf",transactions[i].fPrice);
-    //     printf("\n%s", transactions[i].deleted ? "true" : "false");
-    // }
+        footer(totalGroceries, basePrice, price, discountTag);  //Set Output
+        nextEntry(isEntry);                                     //Display confirmation prompt
+    }
 
     return 0;
 }
