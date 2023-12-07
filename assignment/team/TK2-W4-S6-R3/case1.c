@@ -10,7 +10,7 @@ int main() {
     if (hours >= 4 && hours < 6) costs -= costs * 10/100;
     else if (hours >= 6 && hours < 8) costs -= costs * 15/100;
     else if (hours == 8) costs -= costs * 20/100;
-    else costs -= costs * 25/100;
+    else if (hours > 8) costs -= costs * 25/100;
 
     printf("\nLama pemakaian: %d jam", hours);
     printf("\nBiaya pemakaian: Rp %.2f", costs);
