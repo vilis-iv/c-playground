@@ -31,6 +31,12 @@ int countVocal(char *monthName) {
     return index;  
 }
 
+
+/****************************
+* Function to populate month from array into struct of months 
+* @Param struct months *months
+* @Return  
+*****************************/
 void populateMonth(struct months *months) {
     char *monthsData[12] = {"Januari", "Februari", "Maret"              //Arrays of months
                             , "April", "Mei", "Juni"
@@ -45,8 +51,8 @@ void populateMonth(struct months *months) {
 }
 
 int main() {
-    struct months months[12];
-    struct months *result;
+    struct months months[12];                               //Array to contain struct of months
+    struct months *result;                                  //Array to contain struct of result
     int index = 0;
     char letter;
     populateMonth(months);
