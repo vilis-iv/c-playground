@@ -50,24 +50,23 @@ void deleteData(struct Book *book, int index) {
 }
 
 void saveData(struct Book *book, int index) {
-    // printf("index total : %d\n", index);
     FILE *pFile;
     pFile = fopen("databuku.txt", "a");
     for (int i = 0; i < index; i++) {
 
-        // char id[10];
-        // sprintf(id, "%d", book[i].bookId);
-
-        printf("index from : %d", i);
-        printf("\nname: %s\n", book[i].name);
-        // printf("category: %s\n", book[i].category);
-        // printf("price: %s\n", book[i].price);
+        char id[10];
+        sprintf(id, "%d", book[i].bookId);
         
-        // fputs(id, pFile);
+        fputs(id, pFile);
+        fputs("\n", pFile);
         fputs(book[i].name, pFile);
-        // fputs(book[i].category, pFile);
-        // fputs(book[i].price, pFile);
+        fputs("\n", pFile);
+        fputs(book[i].category, pFile);
+        fputs("\n", pFile);
+        fputs(book[i].price, pFile);
+        fputs("\n", pFile);
     }
+        fclose(pFile);
 }
 
 int main() {
@@ -77,7 +76,7 @@ int main() {
     struct Book *book;
     book = malloc(sizeof(struct Book));      
     
-    while (i != 7) {
+    while (i != 6) {
     printf("===============BOOK STORE==================\n");
     printf("1. Input\n");
     printf("2. View History\n");
