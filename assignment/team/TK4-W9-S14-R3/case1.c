@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <uuid/uuid.h>
 
 struct Book {
     int bookId;
@@ -27,7 +26,7 @@ void inputBook(struct Book *book, int index) {
 }
 
 void viewData(struct Book *book, int index) {
-    for (int i = 0; i < index; i ++) {
+    for (int i = 0; i < index; i++) {
         printf("\nname: %s\n", book[i].name);
         printf("category: %s\n", book[i].category);
         printf("price: %s\n", book[i].price);
@@ -51,17 +50,34 @@ void deleteData(struct Book *book, int index) {
 }
 
 void saveData(struct Book *book, int index) {
+    // printf("index total : %d\n", index);
+    FILE *pFile;
+    pFile = fopen("databuku.txt", "a");
+    for (int i = 0; i < index; i++) {
 
+        // char id[10];
+        // sprintf(id, "%d", book[i].bookId);
+
+        printf("index from : %d", i);
+        printf("\nname: %s\n", book[i].name);
+        // printf("category: %s\n", book[i].category);
+        // printf("price: %s\n", book[i].price);
+        
+        // fputs(id, pFile);
+        fputs(book[i].name, pFile);
+        // fputs(book[i].category, pFile);
+        // fputs(book[i].price, pFile);
+    }
 }
 
 int main() {
     int i = 0;
     int index = 0;
-    FILE *in;
+    // FILE *in;
     struct Book *book;
-    book = malloc(sizeof(struct Book));      //allocating memory for transactions
+    book = malloc(sizeof(struct Book));      
     
-    while (i != 6) {
+    while (i != 7) {
     printf("===============BOOK STORE==================\n");
     printf("1. Input\n");
     printf("2. View History\n");
@@ -95,7 +111,7 @@ int main() {
         case 5 : printf("delete book");
         // main();
         break;
-        case 6 : printf("exit");
+        case 6 : printf("exit\n");
         saveData(book, index);
         break;
         }
