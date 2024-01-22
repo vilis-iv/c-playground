@@ -28,7 +28,8 @@ void inputBook(struct Book *book, int index) {
 
 void viewData(struct Book *book, int index) {
     for (int i = 0; i < index; i++) {
-        printf("\nname: %s\n", book[i].name);
+        printf("\nindex: %d\n", i + 1);
+        printf("name: %s\n", book[i].name);
         printf("category: %s\n", book[i].category);
         printf("price: %s\n", book[i].price);
     } 
