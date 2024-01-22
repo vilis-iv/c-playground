@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Book {
     int bookId;
@@ -69,12 +70,51 @@ void saveData(struct Book *book, int index) {
         fclose(pFile);
 }
 
+void viewFile(struct Book *book) {
+    FILE *pFile;
+    pFile = fopen("databuku.txt", "r");
+
+    char bookId[256];
+    char name[256];
+    char category[256];
+    char price[256];
+
+    int index = 0;
+
+    if (pFile == NULL) perror("Failed to open file");
+    else {
+        while (!feof(pFile)) {
+            fscanf(pFile, "%s", bookId);
+            fscanf(pFile, "%s", name);
+            fscanf(pFile, "%s", category);
+            fscanf(pFile, "%s", price);
+            int id;
+            sscanf(bookId, "%d", &id);
+
+            book[index].bookId = id;
+            strcpy(book[index].name, name);
+            
+            index++;
+            printf("book id: %s\n", bookId);
+            printf("name: %s\n", name);
+            printf("category: %s\n", category);
+            printf("price %s\n", price);
+        }
+    }
+
+    for (int i = 0; i < index; i++) {
+
+    }
+}
+
 int main() {
     int i = 0;
     int index = 0;
     // FILE *in;
     struct Book *book;
+    struct Book *file;
     book = malloc(sizeof(struct Book));      
+    file = malloc(sizeof(struct Book));      
     
     while (i != 6) {
     printf("===============BOOK STORE==================\n");
@@ -99,16 +139,15 @@ int main() {
         break;
         
         case 3 : printf("View Book\n");
-        viewData(book, index);
+        // viewData(book, index);
+        viewFile(file);
         break;
 
         case 4 : printf("delete history");
         deleteData(book, index);
         index--;
-        // main();
         break;
         case 5 : printf("delete book");
-        // main();
         break;
         case 6 : printf("exit\n");
         saveData(book, index);
