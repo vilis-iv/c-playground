@@ -71,7 +71,7 @@ void saveData(struct Book *book, int index) {
         fclose(pFile);
 }
 
-void viewFile(struct Book *book) {
+int loadFile(struct Book *book) {
     FILE *pFile;
     pFile = fopen("databuku.txt", "r");
 
@@ -94,17 +94,21 @@ void viewFile(struct Book *book) {
 
             book[index].bookId = id;
             strcpy(book[index].name, name);
+            strcpy(book[index].category, category);
+            strcpy(book[index].price, price);
             
             index++;
-            printf("book id: %s\n", bookId);
-            printf("name: %s\n", name);
-            printf("category: %s\n", category);
-            printf("price %s\n", price);
         }
     }
+    return index;
+}
 
-    for (int i = 0; i < index; i++) {
-
+void viewFile(struct Book *book, int itemCount) {
+    for (int i = 0; i < itemCount - 1; i++) {
+        printf("book id: %d\n", book[i].bookId);
+        printf("book id: %s\n", book[i].name);
+        printf("book id: %s\n", book[i].category);
+        printf("book id: %s\n", book[i].price);
     }
 }
 
@@ -129,6 +133,8 @@ int main() {
     scanf("%d", &i);
     getchar();
     
+    int itemCount = loadFile(file);
+    
     switch (i) {
         case 1 : printf("Input Book\n");
         inputBook(book, index);
@@ -140,8 +146,7 @@ int main() {
         break;
         
         case 3 : printf("View Book\n");
-        // viewData(book, index);
-        viewFile(file);
+        viewFile(file, itemCount);
         break;
 
         case 4 : printf("delete history");
@@ -151,7 +156,7 @@ int main() {
         case 5 : printf("delete book");
         break;
         case 6 : printf("exit\n");
-        saveData(book, index);
+        saveData(file, index);
         break;
         }
     }
