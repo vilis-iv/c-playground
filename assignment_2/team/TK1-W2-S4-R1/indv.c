@@ -25,7 +25,7 @@ struct data {
 
 void view() {
     printf("|---------------------------------------------------------------------------------------------------------------------------|\n");
-    printf("| No. | Employee ID | Name                         | Place of Birth               | Birth Date | Position                   |\n");
+    printf("| No. | Employee ID | Nama Lengkap                 | Tempat, Tanggal Lahir                     | Jabatan                    |\n");
     printf("|---------------------------------------------------------------------------------------------------------------------------|\n");
     int row = 0;
     curr = head;
