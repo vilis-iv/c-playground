@@ -102,7 +102,7 @@ void deleteAll() {
         free(temp);
     }
     tail = NULL;
-    employee_count = 0;
+    data_count = 0;
     printf("Semua data berhasil dihapus.\n");
 }
 
