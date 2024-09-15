@@ -22,18 +22,24 @@ struct data {
 } *head, *tail, *curr;
 
 void view() {
-    printf("------+-----------------------------------------------+------------\n");
-    printf("| No. | Product Name                                  |       Qty |\n");
-    printf("------+-----------------------------------------------+------------\n");
-
     int row = 0;
     curr = head;
     while (curr) {
         row++;
-        printf("| %3d | %-5s | %-30s | %-30s, %-11s | %-50s | \n", row, curr -> productName, curr -> qty);
+        printf("| %3d | %-5s | %-30s | %-30s, %-11s | %-50s | \n", row, curr -> employee_id, curr -> nama_lengkap, curr -> tempat_lahir, curr -> tanggal_lahir, curr -> jabatan);
         curr = curr -> next;
     
     }
     printf("\n\n\n\n\n");
     
+}
+
+void push(char employee_id[], char nama_lengkap[], char tempat_lahir[], char tanggal_lahir[], char jabatan[]) {
+    curr = (struct data*)malloc(sizeof(struct data));
+    
+    strcpy(curr -> employee_id, employee_id);
+    strcpy(curr -> nama_lengkap, nama_lengkap);
+    strcpy(curr -> tempat_lahir, tempat_lahir);
+    strcpy(curr -> tanggal_lahir, tanggal_lahir);
+    strcpy(curr -> jabatan, jabatan);
 }
