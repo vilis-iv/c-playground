@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+int data_count = 0;
+
 struct data {
     char employee_id[5];
     char nama_lengkap[30]; 
@@ -22,6 +24,9 @@ struct data {
 } *head, *tail, *curr;
 
 void view() {
+    printf("|---------------------------------------------------------------------------------------------------------------------------|\n");
+    printf("| No. | Employee ID | Name                         | Place of Birth               | Birth Date | Position                   |\n");
+    printf("|---------------------------------------------------------------------------------------------------------------------------|\n");
     int row = 0;
     curr = head;
     while (curr) {
@@ -35,6 +40,12 @@ void view() {
 }
 
 void push(char employee_id[], char nama_lengkap[], char tempat_lahir[], char tanggal_lahir[], char jabatan[]) {
+
+    if(data_count >= 5) {
+        printf("Database mencapai jumlah maksimum 5 data");
+        return;
+    }
+    
     curr = (struct data*)malloc(sizeof(struct data));
     
     strcpy(curr -> employee_id, employee_id);
@@ -42,4 +53,15 @@ void push(char employee_id[], char nama_lengkap[], char tempat_lahir[], char tan
     strcpy(curr -> tempat_lahir, tempat_lahir);
     strcpy(curr -> tanggal_lahir, tanggal_lahir);
     strcpy(curr -> jabatan, jabatan);
+    curr->next = NULL;
+
+    if(head == NULL) {
+        head = tail = curr;
+    } else {
+        tail->next = curr;
+        tail = curr;
+    }
+
+    data_count++;
+    printf("data berhasil di tambah");
 }
