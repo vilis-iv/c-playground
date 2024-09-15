@@ -28,7 +28,7 @@ void view() {
     while (curr) {
         row++;
         printf("| %3d | %-5s | %-30s | %-30s, %-10s | %-50s | \n", row, curr->employee_id, curr->nama_lengkap, curr->tempat_lahir, curr->tanggal_lahir, curr->jabatan);
-        curr = curr -> next;
+        curr = curr->next;
     
     }
     printf("\n\n\n\n\n");
