@@ -10,3 +10,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+struct data {
+    char employee_id[5];
+    char nama_lengkap[30]; 
+    char tempat_lahir[30];
+    char tanggal_lahir[11];
+    char jabatan[50];
+
+    struct data *next;
+} *head, *tail, *curr;
