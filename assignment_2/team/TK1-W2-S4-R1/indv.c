@@ -20,3 +20,20 @@ struct data {
 
     struct data *next;
 } *head, *tail, *curr;
+
+void view() {
+    printf("------+-----------------------------------------------+------------\n");
+    printf("| No. | Product Name                                  |       Qty |\n");
+    printf("------+-----------------------------------------------+------------\n");
+
+    int row = 0;
+    curr = head;
+    while (curr) {
+        row++;
+        printf("| %3d | %-5s | %-30s | %-30s, %-11s | %-50s | \n", row, curr -> productName, curr -> qty);
+        curr = curr -> next;
+    
+    }
+    printf("\n\n\n\n\n");
+    
+}
