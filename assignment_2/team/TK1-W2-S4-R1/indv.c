@@ -42,7 +42,7 @@ void view() {
 void push(char employee_id[], char nama_lengkap[], char tempat_lahir[], char tanggal_lahir[], char jabatan[]) {
 
     if(data_count >= 5) {
-        printf("Database mencapai jumlah maksimum 5 data");
+        printf("Database mencapai jumlah maksimum 5 data\n");
         return;
     }
     
@@ -63,5 +63,45 @@ void push(char employee_id[], char nama_lengkap[], char tempat_lahir[], char tan
     }
 
     data_count++;
-    printf("data berhasil di tambah");
+    printf("data berhasil di tambah\n");
+}
+
+void deleteById(char employee_id[]) {
+    struct data *temp = head, *prev = NULL;
+
+    while (temp != NULL && strcmp(temp->employee_id, employee_id) != 0) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf("Employee ID tidak ditemukan.\n");
+        return;
+    }
+
+    if (prev == NULL) {
+        head = temp->next;
+    } else {
+        prev->next = temp->next;
+    }
+
+    if (temp == tail) {
+        tail = prev;
+    }
+
+    free(temp);
+    data_count--;
+    printf("Data berhasil dihapus.\n");
+}
+
+void deleteAll() {
+    struct data *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+    tail = NULL;
+    employee_count = 0;
+    printf("Semua data berhasil dihapus.\n");
 }
