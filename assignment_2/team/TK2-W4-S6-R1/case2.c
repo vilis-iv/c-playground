@@ -62,7 +62,10 @@ void dequeue() {
             front = front->next;
         }
 
+        printf("#### %s Keluar antrian ####\n", temp->nama);
+        
         free(temp);
+
     }
 }
 
@@ -71,9 +74,9 @@ int main() {
     /*************************************
      * Simulasi Konsumen Masuk Antrian
      *************************************/
-    enqueue("Pramudia", "Ayam Bakar", 2);
-    enqueue("Putra", "Sate", 3);
-    enqueue("Pamungkas", "Soda", 4);
+    enqueue("John", "Ayam Bakar", 2);
+    enqueue("Doe", "Sate", 3);
+    enqueue("Jane", "Soda", 4);
 
 
     /*************************************
