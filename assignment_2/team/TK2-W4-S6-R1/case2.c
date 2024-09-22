@@ -62,18 +62,26 @@ void dequeue() {
 }
 
 int main() {
+
+    /*************************************
+     * Simulasi Konsumen Masuk Antrian
+     *************************************/
     enqueue("Pramudia", "Ayam Bakar", 2);
     enqueue("Putra", "Sate", 3);
     enqueue("Pamungkas", "Soda", 4);
 
+
+    /*************************************
+     * Simulasi Konsumen Keluar Antrian
+     *************************************/
     view();
-    dequeue();
+    dequeue();  //Konsumen pertama
 
     view();
-    dequeue();
+    dequeue();  //Konsumen kedua
     
     view();
-    dequeue();
+    dequeue();  //Konsumen ketiga
 
     view();
 
