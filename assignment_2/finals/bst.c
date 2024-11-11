@@ -154,8 +154,9 @@ int main() {
         printf("\nPilih menu: ");
         scanf("%d", &menu);
 
-        //WARN: system call code to clear terminal.
-        //Remove or comment this line if causing error
+        //WARN: system call code to clear terminal on unix system only.
+        //Remove or comment this line if error or bug occured
+        //or change "clear" to "cls"
         system("clear");
 
         switch (menu) {
