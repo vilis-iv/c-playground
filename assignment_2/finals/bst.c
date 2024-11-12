@@ -86,10 +86,12 @@ struct Node* deleteProduct(struct Node* root, int id) {
     } else {
         if (root->left == NULL) {
             struct Node* temp = root->right;
+            printf("produk %s berhasil di hapus", root->product.name);
             free(root);
             return temp;
         } else if (root->right == NULL) {
             struct Node* temp = root->left;
+            printf("produk %s berhasil di hapus", root->product.name);
             free(root);
             return temp;
         }
